@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="r--plotly-%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B-power-bi-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">R + Plotly における Power BI カスタムビジュアルの作成方法</h1>
+<p>Power BI では組み込みのビジュアルを使用してデータの可視化を簡単に行えるが一つの利点ですが、 <strong>「カスタム ビジュアル」</strong> という機能で簡単にサードパーティ（Microsoft 製含む）のビジュアルや独自のビジュアルを組み込むことが可能です。
+この機能によりビジュアル「だけ」作成することはもちろん、R のプロット機能、または R + Plotly のプロット機能を使ったオリジナルの <strong>「アナリティクス＋ビジュアル」</strong> を作成して使用することも可能になります。</p>
+<p>ここでは全く初めて作成する方を対象に、R + Plotly 環境におけるカスタム ビジュアルの作成方法について、順を追って説明いたします。</p>
+<h2 id="1-r-%E3%81%A8-plotly">1. R と Plotly</h2>
+<p>R についてはご存知の方も多いかと思いますが、基本的にはターミナル画面で実行する記述統計、予測分析、機械学習を行うための言語環境です。R の大きな特徴として、パッケージと呼ばれる命令セットの中に上記のような統計、機械学習機能の他に、データや予測結果データの可視化を行う 「plot」（本体に付属）や「ggplot2」（ggplot）と呼ばれる可視化パッケージがあります。plot も ggplot も Power BI の「R スクリプト ビジュアル」から直接実行することができ、ちゃんと Power BI のフィルタやスケールの機能にも対応するので、非常に柔軟で強力な可視化を利用することが可能です。<br>
+しかし強力である反面、ggplot では非常に複雑な書式が要求され、また ggplot は静的な可視化機能になるため、グラフ内でのデータ絞り込みやドリルダウンのようなインタラクティブな機能や、グラフの一部を拡大するなどの可視化支援機能は利用できません。</p>
+<p>そこで新たな可視化環境として「Plotly」という可視化ライブラリが登場しました。Plotly は当初有償のフレームワークとライブラリで構成されておりましたが、現在ではクラウド環境を利用しないライブラリについては無償で提供されています。
+この Plotly を利用することで、非常に単純な書式で複雑なグラフを作成することが可能です。またライブラリのみでインタラクティブ機能、リアルタイム描画機能が利用できるため、ユーザーの様々な要求に応えることが可能です。<br>
+このように良い部分が多い Plotly ですが一つだけ弱点があり、Plotly は基本的に Web 画面での描画を想定しているため、 Power BI の R スクリプト機能ではそのまま利用することができません。そこで Power BI のカスタム ビジュアル機能の一つである RHTML というテンプレートを利用し、ビジュアルの成果物を Web ファイルに出力することで対応することになります。</p>
+<p>Rについての日本語での解説は <a href="http://www.okadajp.org/RWiki/?R%E3%81%A8%E3%81%AF">こちら</a> のページをご覧ください。このページは R の黎明期から利用されている有志による日本語解説サイトです。また Plotly については <a href="https://plot.ly/r/">こちら</a> のページに詳細が説明されています。</p>
+<h2 id="2-%E4%BD%9C%E6%A5%AD%E3%81%AE%E6%B5%81%E3%82%8C">2. 作業の流れ</h2>
+<p>作業の流れを簡単に追ってみましょう。</p>
+<p>「3. 事前準備」<br>
+ここでは Node.js や Node.js での Power BI のカスタムビジュアルを作成する上でのツール「pbiviz」のインストール、パッケージをPower BI にインストールする際に必要になる証明書の作成、インストールを行います。</p>
+<p>「4. カスタム ビジュアル プロジェクトの作成」<br>
+カスタム ビジュアルを作成するには、上記の pbiviz というツールを使って「カスタム ビジュアル プロジェクト」というファイルセットを作成する必要があります。ここで初めて R のスクリプトが登場します。</p>
+<p>「5. カスタム ビジュアル の作成」<br>
+ここでいよいよカスタム ビジュアルを作成します。R、Plotly でのスクリプトを記述後、Power BI Service でのテスト方法、エラーハンドリング、パッケージの作成、インストール方法を説明します。</p>
+<p>一度環境が出来てしまえば、以下の流れで簡単にパッケージを作成することが可能です。</p>
+<ol>
+<li>pbibiz new でのプロジェクトの作成</li>
+<li>R 及び Plotly によるコードの記述</li>
+<li>pbiviz start によるビジュアル サーバーの起動</li>
+<li>Power BI Service でのテスト実施</li>
+<li>pbiviz package によるパッケージに作成</li>
+<li>パッケージのインストール</li>
+</ol>
+<h2 id="3-%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99">3. 事前準備</h2>
+<p>カスタム ビジュアルを作成する前に、作成に必要なものを整理しましょう。作成には以下の環境が必要となります。</p>
+<ol>
+<li>Node.js (LTSバージョン)</li>
+<li>Github上の「Power BI Visuals」の4手順</li>
+</ol>
+<h3 id="nodejs%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">Node.jsのインストール</h3>
+<p>Node.jsは<a href="https://nodejs.org/ja/">ここ</a>からダウンロードできます。
+2018年6月19日現在、LTS版の最新バージョンは「8.11.3 LTS」ですが、新しいものが出ている場合にはそちらをご利用ください。
+インストール自体は msi パッケージですのでダブルクリックで開き、ウィザード形式でインストールが可能です。
+詳細な手順が必要な方はWebで検索して実施してみてください。</p>
+<h3 id="github%E4%B8%8A%E3%81%AE%E3%80%8Cpower-bi-custom-visual%E3%80%8D%E3%81%AE4%E6%89%8B%E9%A0%86">Github上の「Power BI Custom Visual」の4手順</h3>
+<p>Power BI 側の順として、Microsoft が Github 上で公開している「<a href="https://github.com/Microsoft/PowerBI-visuals">Power BI Visuals</a>」というリポジトリの説明にある、「<a href="https://github.com/Microsoft/PowerBI-visuals#setting-up-environmen">Setting Up Environment</a>」の内容を実行する必要があります。ここではこの項目の中にある 1 から 4項</p>
+<ol>
+<li>Install PowerBI visuals CLI tool</li>
+<li>Create SSL certifications to enable live preview of visuals</li>
+<li>Install generated SSL certifications to enable live preview of visuals</li>
+<li>Enable Developer Tools in PowerBI</li>
+</ol>
+<p>までを実行する必要がありますので、日本語の簡単な説明を以下に記載します。</p>
+<hr>
+<ol>
+<li>Power BI visuals CLI ツールのインストール
+コマンドプロンプトを開き、npm コマンドでインストールを実行します。</li>
+</ol>
+<p><code>npm install -g powerbi-visuals-tools</code></p>
+<p>特にエラーも表示されず、以下のように導入したパッケージの数が表示されれば問題ありません（数は環境によって変動します）。</p>
+<p><code>added 836 packages in 190.126s</code></p>
+<p>引き続き稼働確認を行います。以下のコマンドを実行してください。</p>
+<p><code>pbiviz</code></p>
+<p>画面にPower BIのアスキーアート ロゴが表示されれば稼働確認は完了です（日本語コンソールの場合は変なロゴになります）。</p>
+<hr>
+<ol start="2">
+<li>ライブプレビュー用の SSL 証明書の作成</li>
+</ol>
+<p>Windows 8 以降の方は下記コマンドを実行することで証明書の作成が完了ですが、Windows 7 の方は別途 OpenSSL のパッケージを完了させてから実行してください。</p>
+<p><code>pbiviz --create-cert</code></p>
+<p>完了すると以下のような結果が表示されます(&lt;&gt;内は環境依存です)。</p>
+<pre><code> info   Certificate generated. Location is C:\Users\<UserName>\AppData\Roaming\npm\node_modules\powerbi-visuals-tools\certs\PowerBICustomVisualTest_public.pfx. Passphrase is '<PassPhrase>'
+</code></pre>
+<hr>
+<ol start="3">
+<li>ライブプレビュー用に生成した SSL 証明書のインストール</li>
+</ol>
+<p>続けて先ほど作成した証明書をインストールします。ここでは Windows での例を取り上げますので、その他の環境の方は <a href="https://github.com/Microsoft/PowerBI-visuals/blob/master/tools/CertificateSetup.md">HTTPS Certificate Setup</a> のページを参考に実行してください。</p>
+<p>最初に以下のコマンドを実行します。</p>
+<p><code>pbiviz --install-cert</code></p>
+<p>コマンドの実行が成功するとコマンド プロンプトに以下の内容が出力され、別画面で「証明書のインポート ウィザード」が表示されます。</p>
+<p><code>info Use '&lt;PassPhrase&gt;' passphrase to install PFX certificate.</code></p>
+<p>このパスフレーズは次の手順で必要になりますので、メモしておいてください。
+実行が完了すると以下のGUIが表示されます。「現在のユーザー」が選択されていることを確認し、「次へ」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/SSLI01.png" width=480>
+<p>この画面は何も変更せずに「次へ」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/SSLI02.png" width=480>
+<p>秘密キーのパスワードが求められますので、先ほどのパスフレーズを「パスワード」欄に入力し、「次へ」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/SSLI03.png" width=480>
+<p>証明書ストアを指定するため「証明書をすべて次のストアに配置する」を選択し、「参照」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/SSLI04.png" width=480>
+<p>証明書ストア画面で「信頼されたルート証明機関」を選択し、「OK」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/SSLI05.png" width=240>
+<p>元の画面に戻るので「次へ」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/SSLI06.png" width=480>
+<p>確認画面が表示されるため「完了」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/SSLI07.png" width=480>
+<p>セキュリティ警告が表示されるので「はい」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/SSLI08.png" width=320>
+<p>完了画面が表示されますので「OK」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/SSLI09.png" width=160>
+<p>これで証明書のインストールは完了です。</p>
+<hr>
+<ol start="4">
+<li>Power BI Service内での「Developer Visual」の有効化</li>
+</ol>
+<p>次は Power BI Service の画面で設定を変更します。</p>
+<p><a href="https://app.powerbi.com/?noSignUpCheck=1">ここ</a> をクリックして Power BI Service の画面に移動します。</p>
+<p>ダッシュボードが開いたら、「設定」（画面上部の歯車アイコン）をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIS01.png" width=480>
+<p>メニューが現れるので「設定」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIS02.png" width=240>
+<p>設定画面の左ペインで「開発者」をクリックします。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIS03.png" width=480>
+<p>「テスト用の開発者向けビジュアルを有効にする」にチェックを入れます。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIS04.png" width=480>
+<p>これでカスタム ビジュアルを開発する上での設定は完了です。開発者向けビジュアルの稼働確認はVisual プロジェクトが無いと実行できないので、あとで実行します。</p>
+<h2 id="4-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0-%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90">4. カスタム ビジュアル プロジェクトの作成</h2>
+<p>カスタム ビジュアルを作成するには「カスタム ビジュアル プロジェクト」というテンプレートによるファイル セットの作成が必要になります。例えば通常の（R を使用しない）カスタムビジュアルであれば、</p>
+<p><code>pbiviz new &lt;プロジェクト名&gt;</code></p>
+<p>で作成可能ですが、R ビジュアルの場合は、</p>
+<p><code>pbiviz new &lt;プロジェクト名&gt; -t rvisual</code></p>
+<p>というテンプレートを呼び出すオプションが必要になり、R + Plotly の場合には、</p>
+<p><code>pbiviz new &lt;プロジェクト名&gt; -t rhtml</code></p>
+<p>というテンプレートの呼び出しが必要になります。ここでは RHTML の例で順を追って説明します。</p>
+<hr>
+<ol>
+<li>コマンド プロンプトを起動し、プロジェクトを作成するディレクトリ（プロジェクト用ディレクトリは自動作成されるので作成は不要です）に移動します。</li>
+</ol>
+<hr>
+<ol start="2">
+<li>以下の Node.js コマンドを実行します。</li>
+</ol>
+<p><code>pbiviz new testViz -t rhtml</code></p>
+<p>実行が完了すると以下のように表示されます。</p>
+<pre><code> info   Creating new visual
+ info   Installing packages...
+ info   Installed packages.
+ done   Visual creation complete
+</code></pre>
+<hr>
+<ol start="3">
+<li>新しく作成されたディレクトリ（ここでは testViz ）に移動します。</li>
+</ol>
+<p><code>cd testViz</code></p>
+<hr>
+<ol start="4">
+<li>通常のカスタム ビジュアルはここでサーバー起動できるのですが、R (+ Plotly) の場合は事前にパッケージ化が必要になるので以下の内容を実行します。</li>
+</ol>
+<p><code>pbiviz package</code></p>
+<hr>
+<ol start="5">
+<li>Visual Server を起動します。</li>
+</ol>
+<p><code>pbiviz start</code></p>
+<p>起動が成功すると以下のようなメッセージが表示され、待機状態になります。</p>
+<pre><code> info   Building visual...
+ done   build complete
+
+ info   Starting server...
+ info   Server listening on port 8080.
+</code></pre>
+<p>これで Power BI Service からカスタム ビジュアルを使用できるようになりました。
+作成後のファイル構成は以下のようになっているはずです。</p>
+<pre><code class="language-cmd:dir">.api             
+.npmignore       
+.tmp             
+.vscode          
+assets           
+capabilities.json
+dependencies.json
+node_modules     
+package-lock.json
+package.json     
+pbiviz.json      
+r_files          
+script.r         
+src              
+style            
+tsconfig.json    
+tslint.json
+</code></pre>
+<p>この中にある <code>r_files</code> と <code>script.r</code> がカスタム ビジュアルで R を実行する上で重要になります。</p>
+<hr>
+<ol start="6">
+<li>Power BI Service で適当なデータからレポートを作成します。サンプルからデータを取得しても構いませんし、作成済みのデータがあればそれを使用しても構いません。</li>
+</ol>
+<hr>
+<ol start="7">
+<li>空のレポートに対して下図にある「開発者向けビジュアル」をクリックします。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIS07.png" width=160>
+<hr>
+<ol start="8">
+<li>問題なく動作すれば、下図のように Iris のデータがロードされた Plotly のグラフが表示されます。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP01.png" width=480>
+<p>データセットを Value の欄に入れてもグラフが変化しないのは、 Iris のデータがハードコードされているからですので不具合ではありません。</p>
+<p>もし表示されない、エラーが出る、表示が異常な場合には以下の内容を疑うか、実行してみてください。</p>
+<ul>
+<li>証明書の作成、インストールが不完全</li>
+<li>ブラウザのプライベートモードを使用してみる</li>
+<li>違うブラウザを試してみる</li>
+<li><code>pbiviz new</code> で作成する際に <code>-t</code> 以降を付与しないで作成する（あくまで動作するかのテストですので、実際には <code>-t</code> 以降は必要になります）</li>
+</ul>
+<h2 id="5-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0-%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90">5. カスタム ビジュアルの作成</h2>
+<p>これでカスタム ビジュアルを作成する環境が整備されましたので、引き続き実際のデータを使って動作する、インタラクティブな R + Plotlyのグラフを開発します。
+Rのコード作成を行うためにはエディタやIDEで開発を行いますが、ここでは Visual Studio Code（以下VCS）を使用して開発を行います。</p>
+<hr>
+<ol>
+<li>VSCで 先ほど作成したプロジェクト内の script.r を開きます。以下のように表示されるはずです。</li>
+</ol>
+<pre><code>source('./r_files/flatten_HTML.r')
+
+############### Library Declarations ###############
+libraryRequireInstall("ggplot2");
+libraryRequireInstall("plotly")
+####################################################
+
+################### Actual code ####################
+g = qplot(`Petal.Length`, data = iris, fill = `Species`, main = Sys.time());
+####################################################
+
+############# Create and save widget ###############
+p = ggplotly(g);
+internalSaveWidget(p, 'out.html');
+####################################################
+</code></pre>
+<p>1行目はライブラリの読み込み用の「libraryRequireInstall」や HTML ファイルの生成用の「internalSaveWidget」関数などが含まれるファイルをソースとして参照している行です。</p>
+<p>4, 5行目は ggplot2 と plotly を必要に応じてインストールするための記述です。ここまでの内容は特に編集不要な内容です。</p>
+<p>9行目は実際のコードを記述する部分ですが、ここでは ggplot のクイック プロット機能を使用しています。</p>
+<p>13, 14行目はウィジェット作成、保存とコメントに書いてありますが、ここで行っていることは、</p>
+<ul>
+<li>ggplot で作成したグラフオブジェクトを plotly 形式に変換して p に代入し、</li>
+<li>それをウィジェットとして out.html と共に保存</li>
+</ul>
+<p>しているということになります。これは、通常 ggplot は静的なグラフしか作成できないのですが、これを Plotly を通すことで動的なグラフを実現しているということになります。</p>
+<hr>
+<ol start="2">
+<li>このまま ggplot + Plotly を使っても問題ありませんが、ここはシンプルに Plotly だけ使う方法を選択します。以下のようなコードに変更してみてください。</li>
+</ol>
+<pre><code>source('./r_files/flatten_HTML.r')
+
+############### Library Declarations ###############
+libraryRequireInstall("plotly")
+####################################################
+
+################### Actual code ####################
+p = plot_ly(Values,
+  x = Values[,1],
+  y = Values[,2]
+)
+####################################################
+
+############# Create and save widget ###############
+internalSaveWidget(p, 'out.html');
+####################################################
+</code></pre>
+<hr>
+<ol start="3">
+<li>ggplot を使用しなくなるなるだけでかなりコードが綺麗になりました。この状態で一度ダッシュボード上の「ビジュアル コードの再読み込み」をクリックします。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP01.png" width=480>
+<hr>
+<ol start="4">
+<li>適当な数値データを「Values」の欄にドラッグ＆ドロップします。すると以下のような棒グラフが表示されます。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP02.png" width=480>
+<p>Plotlyには他にも様々なグラフスタイルがありますので、それを試してみましょう。ここでは以下のようにコードを変更して、ヒートマップを表示してみます。</p>
+<pre><code>source('./r_files/flatten_HTML.r')
+
+############### Library Declarations ###############
+libraryRequireInstall("plotly")
+####################################################
+
+################### Actual code ####################
+p = plot_ly(Values,
+  x = Values[,1],
+  y = Values[,2],
+  z = Values[,3],
+  type = "heatmap"
+)
+####################################################
+
+############# Create and save widget ###############
+internalSaveWidget(p, 'out.html');
+####################################################
+</code></pre>
+<hr>
+<ol start="5">
+<li>保存を実行すると先ほど起動した <code>pbiviz</code> のコンソール画面で以下のように変更を検知、自動ビルドが行われます。</li>
+</ol>
+<pre><code> info   RScript change detected. Rebuilding...
+ done   RScript build complete
+</code></pre>
+<p>これは <code>pbiviz</code> サーバーが自動的に変更を検知してビルドすることで開発効率を高める仕組みです。もし動作しない場合には先ほどの <code>package</code> コマンドを手動で実行し、サーバーを再起動してください。</p>
+<hr>
+<ol start="6">
+<li>ここでダッシュボード上の「ビジュアル コードの再読み込み」をクリックします。ここでは3個のデータが必要にも関わらず2個のデータ（先ほどの状態であれば）しかないため、「ランタイムエラー」が発生しています。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP03.png" width=240>
+<p>このエラーの対処方法は後ほど解説しますので、ここではもう一つの数値データを「Values」欄にドラッグ＆ドロップします。これで以下のように画面が変わるはずです。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP04.png" width=480>
+<hr>
+<ol start="7">
+<li>たった2行のコードを追加するだけで、簡単にグラフを変えることができました。しかし先ほどのエラーのように、3軸のデータが必要な場合にデータ数が少ないとエラーが表示されるのは問題ですので、以下のようなコードを追加してみましょう。</li>
+</ol>
+<pre><code>source('./r_files/flatten_HTML.r')
+
+############### Library Declarations ###############
+libraryRequireInstall("ggplot2")
+libraryRequireInstall("plotly")
+####################################################
+
+####### Validate number of columns and rows ########
+pbiWarning <- NULL
+# filter out non-numeric columns and constant columns (Should be comment if not use column test)
+# correctColumn <- function(someColumn) { is.numeric(someColumn) && length(unique(someColumn)) > 1 }
+# useColumns <- sapply(Values,correctColumn)
+# if(sum(useColumns) < ncol(Values))
+#   pbiWarning <- "Filtered out non numeric columns and constant columns"
+# 
+# Values <- as.data.frame(Values[,useColumns])
+
+# filter out < 2 columns and < 2 columns
+columnCount <- ncol(Values)
+rowCount <- nrow(Values)
+
+if (rowCount < 2 || columnCount < 3) {
+  pbiWarning <- paste(pbiWarning, "<br><br>", "Not enough input dimensions");
+
+# Plot error message to ggplot and convert to Plotly
+  gg = ggplot()
+  gg = gg + labs (title = pbiWarning, caption = NULL) + theme_bw() +
+    theme(plot.title=element_text(hjust = 0.5, size = 20),
+          axis.title=element_text(size =  11),
+          axis.text=element_text(size =  8),
+          panel.border = element_blank())
+  p <- plotly_build(gg)
+  internalSaveWidget(p, 'out.html')
+  quit()
+}
+####################################################
+
+################### Actual code ####################
+p = plot_ly(Values,
+            x = Values[,1],
+            y = Values[,2],
+            z = Values[,3],
+            type = "heatmap"
+)
+####################################################
+
+############# Create and save widget ###############
+internalSaveWidget(p, 'out.html')
+####################################################
+</code></pre>
+<p>ここでは「ggplot」が再び登場しているのがお分かりかと思います。これは Power BI が最終出力をグラフのオブジェクトしか受け取らないことと、Plotlyの出力内容に関係しています。もしエラーメッセージをそのままテキストで出力できれば特に何も問題ないのですが、Power BI では受け付けてくれません。また Plotly は様々なグラフを簡単に出力するには非常に良いのですが、例えば今回のエラーのように軸やデータを何も表示せずにテキストのみを表示することはできません。そのため今回 ggplot で出力した内容を更に <code>plotly_build</code> を使用して Plotly 形式のグラフとして出力しています。
+また R 標準の <code>plot</code> も、今回の RHTML 形式ではウィジェット保存ができないため、対応できません。
+もちろん軸やその他が表示されてもいいので、コードをなるべくシンプルにしたい場合には <code>Plotly</code> で記述しても動作します。</p>
+<p>今回はセクションとして Validate number of columns and rows というコメントの部分を追加し、この中にコードを書きました。ブロックとしては、</p>
+<ul>
+<li>エラーメッセージの初期化</li>
+<li>数値カラム以外のカラムの削除とエラー表示設定</li>
+<li>特定の数値以下の行、列をエラーとする</li>
+<li>エラーメッセージの出力</li>
+</ul>
+<p>の4つで構成されています。今回は文字列カラムも使用するので2個目のブロックはコメント化しています。
+3つ目のブロックで3カラム未満の場合をエラーとしています。これはヒートマップは3次元のデータを必要としているからです。もしこれがヒストグラムであれば1未満、散布図であれば2未満というようにパラメータを変更する必要があります。
+最後のブロックで <code>quit()</code> でコードを終了させていることにも注意が必要です。もし終了しなかった場合、後続のコードが実行されるため、エラーが表示されることになります。</p>
+<hr>
+<ol start="8">
+<li>それではこのコードを保存し、自動コンバートされたことを確認し、グラフをリロードしてみましょう。リロードが成功すると、特に先ほどと変わらない画面が表示されますので、データを1つ取り除きます。グラフが再度読み込まれ、以下のような画面に変わるはずです。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP05.png" width=480>
+<hr>
+<ol start="9">
+<li>再び取り除いたデータを戻し、元通り動作することも確認します。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP04.png" width=480>
+<hr>
+<ol start="10">
+<li>動作確認が完了したら、このビジュアルをパッケージ化して Power BI Desktop でも使用できるようにしましょう。カスタム ビジュアルとしてちゃんと認識できるように、アイコンの設定をしましょう。カスタム ビジュアルで使用できるアイコンのサンプルが、</li>
+</ol>
+<p><code>assets\icon.png</code></p>
+<p>に配置されていますので、それを変更しましょう。ここでは以下のようなアイコンにしました。
+アイコンのサイズは 20x20 と非常に小さいので注意しましょう。</p>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP06.png" width=20>
+<p>同じ場所、同じ名前で png 形式で保存します。</p>
+<hr>
+<ol start="11">
+<li>保存が完了したら、パッケージ化を行います。以下のコマンドを実行してパッケージを作成します。</li>
+</ol>
+<p><code>pbiviz package</code></p>
+<p>問題が無ければ、以下のように表示されて完了します。</p>
+<pre><code> info   Building visual...
+ done   packaging complete
+</code></pre>
+<hr>
+<ol start="12">
+<li>パッケージ化されたファイルを確認しましょう。パッケージは以下の場所に格納されます。</li>
+</ol>
+<p><code>dist\&lt;プロジェクト名&gt;.pbiviz</code></p>
+<p>このファイルを Power BI Desktop で読み込み、動作を確認します。</p>
+<hr>
+<ol start="13">
+<li>Power BI Desktop を起動します。もしお持ちでない方は Power BI の製品ページからダウンロードしてください。起動後、「視覚化」メニューから「カスタム ビジュアルのインポート」アイコンをクリックします（・・・というアイコンです）。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP07.png" width=480>
+<hr>
+<ol start="14">
+<li>メニューが開くので「ファイルからインポートする」をクリックします。「プライバシーに関するリスク」警告が表示される場合がありますので、内容を確認の上「インポート」をクリックします。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP08.png" width=240>
+<hr>
+<ol start="15">
+<li>先ほどパッケージ化したファイルを選びます。正常にインポートされると「正常にインポートされました」という内容のダイアログが表示されます。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP09.png" width=240>
+<hr>
+<ol start="16">
+<li>先ほど作成したアイコンでパッケージが追加されていることを確認します。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP10.png" width=480>
+<hr>
+<ol start="17">
+<li>Power BI Service での動作確認時と同じ動作が行われるか確認します。</li>
+</ol>
+<img src="file:///c%3A/opt/sandbox/testVizRDoc/img/PBIP11.png" width=480>
+<hr>
+<p>これで R と Plotly を使用したカスタム ビジュアルの作成は完了です。Microsoft 自体も様々な同様のカスタム ビジュアルを Github にて公開していますので、ビジュアル開発の一助にご利用頂ければと思います。</p>
+<p><a href="https://github.com/search?l=R&amp;q=microsoft%2Fpowerbi-visuals-&amp;type=Repositories">Microsoft の Github リポジトリ （R を利用したカスタム ビジュアルのみ）</a></p>
+
+    </body>
+    </html>
